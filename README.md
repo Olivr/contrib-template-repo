@@ -1,6 +1,6 @@
 # USING THIS TEMPLATE
 
-1. Search/replace for these variables:
+Search/replace for these variables:
 
    - `{{repo_owner}}` (GitHub repo username)
    - `{{repo_name}}` (GitHub repo name)
