@@ -1,6 +1,8 @@
 {
-  "extends": ["config:base"],
-  "schedule": ["every day at 7am"],
+  "extends": [
+    "config:base",
+    "schedule:daily"
+  ],
   "labels": ["dependencies"],
   "github-actions": {
     "enabled": true,
