@@ -30,14 +30,14 @@ jobs:
       - name: Add voting reactions to issue
         uses: aidan-mundy/react-to-issue@b189f43a4686d4183c80c957dbcec07a720be261
         with:
-          issue-number: ${{ github.event.number }}
+          issue-number: ${{github.event.issue.number}}
           reactions: +1, -1
           token: ${{ steps.generate_token.outputs.token }}
 
       - name: Comment on issue
         uses: peter-evans/create-or-update-comment@26f07868647c398ca3d2042238c8aa620ca5d311
         with:
-          issue-number: ${{ github.event.number }}
+          issue-number: ${{github.event.issue.number}}
           body: |
             Please **do not** comment on this issue for the sole purpose of bumping or showing your interest.
             Please **do** use the 👍 and 👎 reactions to show your interest.  
