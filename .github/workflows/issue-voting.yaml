@@ -16,12 +16,12 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     name: Auto-comment
-
+    if: github.event.issue.title != 'Dependency Dashboard'
     steps:
       - name: Generate app token
         id: generate_token
         # yamllint disable-line rule:line-length
-        uses: peter-murray/workflow-application-token-action@e8782d687a306fb13d733244d0f2a50e272d3752
+        uses: peter-murray/workflow-application-token-action@a4618a939176094dcba1cf8aa293639bb6eeaf7d
         with:
           application_id: ${{ secrets.GH_APP_ID }}
           application_private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
