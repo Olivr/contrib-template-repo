@@ -1,5 +1,5 @@
 {
-  "name": "{{project_name}}",
+  "name": "do-not-commit",
   "version": "0.0.1",
   "description": "{{project_tagline}}",
   "main": "index.js",
