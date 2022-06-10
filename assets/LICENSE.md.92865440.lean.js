@@ -1,0 +1,1 @@
+import{_ as e,c as t,o,a as i}from"./app.cc91a4fa.js";const m='{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"LICENSE.md"}',n={name:"LICENSE.md"},r=i("",10),a=[r];function s(c,h,d,u,l,p){return o(),t("div",null,a)}var y=e(n,[["render",s]]);export{m as __pageData,y as default};
