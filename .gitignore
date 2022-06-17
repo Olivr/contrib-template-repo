@@ -24,7 +24,7 @@ jspm_packages/
 .yarn-integrity
 
 # vitepress build output
-.vitepress/dist
+.vitepress/dist/**
 
 # yarn v2
 .yarn/cache

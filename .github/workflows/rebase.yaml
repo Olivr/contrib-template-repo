@@ -1,7 +1,9 @@
-# -------------------------------------------------------------------------------------------------
-# This GitHub Actions workflow allows users of this repo to automatically rebase their PR.
+# -----------------------------------------------------------------------------
+# This GitHub Actions workflow allows users of this repo to automatically
+# rebase their PR.
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -16,7 +18,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
 name: rebase
 
@@ -34,16 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Automatic Rebase
     if: >-
-      github.event.issue.pull_request != '' && 
-      (
-        contains(github.event.comment.body, '/rebase') || 
+      github.event.issue.pull_request != '' && (
+        contains(github.event.comment.body, '/rebase') ||
         contains(github.event.comment.body, '/autosquash')
       )
 
     steps:
       - name: Generate app token
         id: generate_token
-        # yamllint disable-line rule:line-length
         uses: peter-murray/workflow-application-token-action@v1
         with:
           application_id: ${{ secrets.GH_APP_ID }}
@@ -61,10 +61,11 @@ jobs:
       - name: Automatic Rebase
         uses: cirrus-actions/rebase@1.7
         with:
-          autosquash: >
-            ${{ 
+          autosquash: >-
+            ${{
               contains(github.event.comment.body, '/autosquash') ||
               contains(github.event.comment.body, '/rebase-autosquash')
             }}
+
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

@@ -1,8 +1,10 @@
-# -------------------------------------------------------------------------------------------------
-# This GitHub Actions workflow performs a typical developer workflow when a dependency is updated
-# or when new code is pushed to identify potential breaking changes to the developer toolchain.
+# -----------------------------------------------------------------------------
+# This GitHub Action performs a typical developer workflow when a dependency is
+# updated or when new code is pushed to identify potential breaking changes to
+# the developer toolchain.
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -17,9 +19,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
-name: test-dev-workflow
+name: test-workflow
 
 permissions:
   contents: read
@@ -33,9 +35,10 @@ on:
 jobs:
   test:
     name: Test developer workflow
-    if: >
+    if: >-
       github.event_name != 'pull_request' ||
       contains(github.event.*.labels.*.name, 'dependencies')
+
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -54,4 +57,4 @@ jobs:
           git config --global user.email "actions@github.com"
 
       - name: Test developer workflow
-        run: make test-dev-workflow
+        run: make test-workflow

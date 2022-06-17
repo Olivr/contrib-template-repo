@@ -1,7 +1,9 @@
-# -------------------------------------------------------------------------------------------------
-# This bug report GitHub issue template should fulfill the needs of most projects.
+# -----------------------------------------------------------------------------
+# This bug report GitHub issue template should fulfill the needs of most
+# projects.
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -16,7 +18,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
 name: Bug report
 description: Report an issue with {{project_name}}
@@ -24,12 +26,11 @@ labels: [bug]
 body:
   - type: markdown
     attributes:
-      value: >
-        **Before** opening a new bug report, please search for relevant keywords in the
-        [existing issues](https://github.com/{{repo_owner}}/{{repo_name}}/issues)
-        and in our
-        [forum]({{forum_url}})
-        so you do not submit a duplicate report.
+      value:
+        "**Before** opening a new bug report, please search for relevant
+        keywords in the [existing
+        issues](https://github.com/{{repo_owner}}/{{repo_name}}/issues) and in
+        our [forum]({{forum_url}}) so you do not submit a duplicate report."
 
   - type: textarea
     validations:
@@ -57,39 +58,38 @@ body:
       required: true
     attributes:
       label: Steps to reproduce
-      description: |
-        Steps to reproduce the problem.
-      placeholder: |
-        Please include as much details as possible so we can reproduce the bug and fix it quickly.
+      description: Steps to reproduce the problem.
+      placeholder:
+        Please include as much details as possible so we can reproduce the bug
+        and fix it quickly.
 
   - type: textarea
     attributes:
       label: Environment
-      description: >
-        Any relevant details about the version of {{project_name}} you are using, OS, browser, etc.
-        You can run `npx envinfo --system --browsers` for a quick system report.
+      description:
+        Any relevant details about the version of {{project_name}} you are
+        using, OS, browser, etc. You can run `npx envinfo --system --browsers`
+        for a quick system report.
 
   - type: textarea
     attributes:
       label: Possible solution
-      description: |
-        You can include any possible solution you can think of to fix the bug. You can be technical.
+      description:
+        You can include any possible solution you can think of to fix the bug.
+        You can be technical.
 
   - type: checkboxes
     id: terms
     attributes:
       label: Checklist
       options:
-        - label: >
-            I have searched for similar requests in the
-            [existing issues](https://github.com/{{repo_owner}}/{{repo_name}}/issues)
-            and in the
-            [forum]({{forum_url}}).
+        - label:
+            I have searched for similar requests in the [existing
+            issues](https://github.com/{{repo_owner}}/{{repo_name}}/issues) and
+            in the [forum]({{forum_url}}).
           required: true
 
-        # yamllint disable rule:line-length
-        - label: >
-            I agree to follow this project's
-            [Code of Conduct]({{docs_base_url}}/docs/CODE_OF_CONDUCT.{{docs_extension}})
+        - label:
+            I agree to follow this project's [Code of
+            Conduct]({{docs_base_url}}/docs/code_of_conduct.{{docs_extension}})
           required: true
-        # yamllint enable rule:line-length

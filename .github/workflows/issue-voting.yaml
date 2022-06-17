@@ -1,8 +1,9 @@
-# -------------------------------------------------------------------------------------------------
-# This GitHub Actions workflow comments on each new issue with a message explaining how to behave
-# and vote on the issue.
+# -----------------------------------------------------------------------------
+# This GitHub Actions workflow comments on each new issue with a message
+# explaining how to behave and vote on the issue.
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -17,7 +18,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
 name: issue-voting
 
@@ -37,7 +38,6 @@ jobs:
     steps:
       - name: Generate app token
         id: generate_token
-        # yamllint disable-line rule:line-length
         uses: peter-murray/workflow-application-token-action@v1
         with:
           application_id: ${{ secrets.GH_APP_ID }}
@@ -56,44 +56,35 @@ jobs:
       - name: Comment on issue
         uses: peter-evans/create-or-update-comment@v2
         with:
+          token: ${{ steps.generate_token.outputs.token }}
           issue-number: ${{github.event.issue.number}}
-          body: >
-            ## Do's
+          reactions: eyes
+          body: '
+            ## Do''s
 
+            - Please **do** use the 👍 and 👎 reactions to show your interest. -
+            Please **do** add constructive comments to help the community. -
+            Please **do** consider contributing with a pull request to resolve
+            this issue. - Please **do** follow our [Code of
+            Conduct]({{docs_base_url}}/docs/code_of_conduct.{{docs_extension}}).
 
-            - Please **do** use the 👍 and 👎 reactions to show your interest.
+            ## Don''ts
 
-            - Please **do** add constructive comments to help the community.
-
-            - Please **do** consider contributing with a pull request to resolve this issue.
-
-            - Please **do** follow our
-            [Code of Conduct]({{docs_base_url}}/docs/CODE_OF_CONDUCT.{{docs_extension}}).
-
-
-            ## Don'ts
-
-
-            - Please **do not** comment on this issue for the sole purpose of **bumping, asking for
-            a fix, showing your interest, +1, etc.**
-
+            - Please **do not** comment on this issue for the sole purpose of
+            **bumping, asking for a fix, showing your interest, +1, etc.**
 
             ## Notifications
 
-
-            - To be notified when activity occurs **on this issue**, click "**Subscribe**" on the
-            right hand side of this page.
-
-            - To be notified when activity occurs **on this repo**, give it a ⭐️ and choose your
-            notification preferences under "**Watch**" at the top.
-          reactions: eyes
-          token: ${{ steps.generate_token.outputs.token }}
+            - To be notified when activity occurs **on this issue**, click
+            "**Subscribe**" on the right hand side of this page. - To be
+            notified when activity occurs **on this repo**, give it a ⭐️ and
+            choose your notification preferences under "**Watch**" at the top.'
 
       - name: Comment on issue
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{github.event.issue.number}}
-          body: >
-            Thank you @${{ github.event.issue.user.login }} for opening an issue, a maintainer will
-            look at it shortly.
+          body:
+            Thank you @${{ github.event.issue.user.login }} for opening an
+            issue, a maintainer will look at it shortly.
           token: ${{ steps.generate_token.outputs.token }}

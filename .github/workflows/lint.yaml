@@ -1,7 +1,8 @@
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # This GitHub Actions workflow lints the codebase.
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -16,7 +17,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
 name: lint
 
@@ -44,9 +45,11 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          YAML_CONFIG_FILE: ../../../github/workspace/.yamllint.yaml
-          # Validate only new/changed files unless this workflow is triggered manually
+          FILTER_REGEX_EXCLUDE: CHANGELOG.md
+          LINTER_RULES_PATH: /
+          YAML_CONFIG_FILE: .yamllint.yaml
+          NATURAL_LANGUAGE_CONFIG_FILE: .textlintrc.yaml
+          # Validate only changed files unless workflow is triggered manually
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'workflow_dispatch' }}
           # Do not run Gitleaks because we are already using TruffleHog
           VALIDATE_GITLEAKS: false
-          FILTER_REGEX_EXCLUDE: (LICENSE|CHANGELOG).md

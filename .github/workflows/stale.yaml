@@ -1,12 +1,14 @@
-# -------------------------------------------------------------------------------------------------
-# This GitHub Actions workflow checks periodically for issues and pull requests which had no
-# activity in a while and marks them as stale before eventually deleting them.
-# To make the most of it, you should mark issues and PRs with the following labels:
+# -----------------------------------------------------------------------------
+# This GitHub Actions workflow checks periodically for issues and pull requests
+# which had no activity in a while and marks them as stale before eventually
+# deleting them. To make the most of it, you should label issues and PRs with
+# the following labels:
 # - high-priority
 # - medium-priority
 # - low-priority
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -21,7 +23,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
 name: stale
 
@@ -42,7 +44,6 @@ jobs:
     steps:
       - name: Generate app token
         id: generate_token
-        # yamllint disable-line rule:line-length
         uses: peter-murray/workflow-application-token-action@v1
         with:
           application_id: ${{ secrets.GH_APP_ID }}
@@ -59,14 +60,14 @@ jobs:
           days-before-close: 7
           stale-issue-label: stale
           exempt-issue-labels: high-priority,medium-priority,low-priority
-          stale-issue-message: >
-            This issue had no activity for **2 months**.
-            It will be closed in **one week** unless there is some new activity.
+          stale-issue-message:
+            "This issue had no activity for **2 months**. It will be closed in
+            **one week** unless there is some new activity."
           stale-pr-label: stale
           exempt-pr-labels: high-priority,medium-priority,low-priority
-          stale-pr-message: >
-            This pull request had no activity for **2 months**.
-            It will be closed in **one week** unless there is some new activity.
+          stale-pr-message:
+            "This pull request had no activity for **2 months**. It will be
+            closed in **one week** unless there is some new activity."
 
       - name: Low-priority
         uses: actions/stale@v5
@@ -76,13 +77,13 @@ jobs:
           days-before-stale: 90
           days-before-close: 7
           stale-issue-label: stale
-          stale-issue-message: >
-            This issue had no activity for **3 months**.
-            It will be closed in **one week** unless there is some new activity.
+          stale-issue-message:
+            "This issue had no activity for **3 months**. It will be closed in
+            **one week** unless there is some new activity."
           stale-pr-label: stale
-          stale-pr-message: >
-            This pull request had no activity for **3 months**.
-            It will be closed in **one week** unless there is some new activity.
+          stale-pr-message:
+            "This pull request had no activity for **3 months**. It will be
+            closed in **one week** unless there is some new activity."
 
       - name: Medium-priority
         uses: actions/stale@v5
@@ -92,13 +93,13 @@ jobs:
           days-before-stale: 90
           days-before-close: 14
           stale-issue-label: stale
-          stale-issue-message: >
-            This issue had no activity for **3 months**.
-            It will be closed in **two weeks** unless there is some new activity.
+          stale-issue-message:
+            "This issue had no activity for **3 months**. It will be closed in
+            **two weeks** unless there is some new activity."
           stale-pr-label: stale
-          stale-pr-message: >
-            This pull request had no activity for **3 months**.
-            It will be closed in **two weeks** unless there is some new activity.
+          stale-pr-message:
+            "This pull request had no activity for **3 months**. It will be
+            closed in **two weeks** unless there is some new activity."
 
       - name: High-priority
         uses: actions/stale@v5
@@ -108,10 +109,10 @@ jobs:
           days-before-stale: 90
           days-before-close: 21
           stale-issue-label: stale
-          stale-issue-message: >
-            This issue had no activity for **3 months**.
-            It will be closed in **three weeks** unless there is some new activity.
+          stale-issue-message:
+            "This issue had no activity for **3 months**. It will be closed in
+            **three weeks** unless there is some new activity."
           stale-pr-label: stale
-          stale-pr-message: >
-            This pull request had no activity for **3 months**.
-            It will be closed in **three weeks** unless there is some new activity.
+          stale-pr-message:
+            "This pull request had no activity for **3 months**. It will be
+            closed in **three weeks** unless there is some new activity."

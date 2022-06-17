@@ -1,7 +1,9 @@
-# -------------------------------------------------------------------------------------------------
-# This GitHub Actions workflow comments on each new PR with a link to explain the PR process.
+# -----------------------------------------------------------------------------
+# This GitHub Actions workflow comments on each new PR with a link to explain
+# the PR process.
 #
-# This file has been initially created for https://github.com/politician/template-repo
+# File modification history (see commits in each repository for details):
+#   - 2022-06-06: Created for https://github.com/olivr/template-repo
 #
 # Copyright 2022 Romain Barissat. All rights reserved.
 #
@@ -16,7 +18,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# -------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 ---
 name: pr-helper
 
@@ -32,13 +34,13 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     name: Auto-comment
-    if: >
-      !startsWith(github.event.pull_request.title,'chore(deps):') &&
+    if: >-
+      !startsWith(github.event.pull_request.title ,'chore(deps):') &&
       !startsWith(github.event.pull_request.title,'fix(deps):')
+
     steps:
       - name: Generate app token
         id: generate_token
-        # yamllint disable-line rule:line-length
         uses: peter-murray/workflow-application-token-action@v1
         with:
           application_id: ${{ secrets.GH_APP_ID }}
@@ -50,47 +52,41 @@ jobs:
       - name: Comment on issue
         uses: peter-evans/create-or-update-comment@v2
         with:
+          token: ${{ steps.generate_token.outputs.token }}
           issue-number: ${{github.event.pull_request.number}}
-          body: >
-            🎉 Thank you for opening a pull request 🎉 
-
+          reactions: eyes
+          body: "
+            🎉 Thank you for opening a pull request 🎉
 
             As a reminder, you can rebase it either:
 
-            - From your pull request by commenting `/rebase`
+            - From your pull request by commenting `/rebase` - From your
+            workstation:
 
-            - From your workstation:
+            <details>
 
-              <details>
+            Ensure you added this repository as upstream:
 
-              Configure upstream if you haven't done so
+            ```sh git remote add upstream
+            git@github.com:${{github.repository}}.git ```
 
-              ```sh
-              git remote add upstream git@github.com:${{github.repository}}.git
-              ```
+            Ensure you are on the correct local branch:
 
-              Ensure you are on your working branch
+            ```sh git switch <branch_name> ```
 
-              ```sh
-              git switch <branch_name>
-              ```
+            Rebase the changes in your branch on top of the upstream changes:
 
-              Pull upstream and rebase your branch
+            ```sh git pull --rebase upstream main ```
 
-              ```sh
-              git fetch upstream
-              git rebase upstream/main
-              ```
+            [Resolve any
+            conflicts](https://docs.github.com/en/get-started/using-git/resolving-merge-conflicts-after-a-git-rebase)
+            and re-push your branch.
 
-              Force-push your changes because your branch history has been rewritten
+            ```sh git push --force ```
 
-              ```sh
-              git push --force origin <branch_name>
-              ```
+            </details>
 
-              </details>
+            Your pull request will be automatically re-synced.
 
             Read more about our recommended [pull request
-            process]({{docs_base_url}}/docs/CONTRIBUTING.{{docs_extension}}#pull-request-process).
-          reactions: eyes
-          token: ${{ steps.generate_token.outputs.token }}
+            process]({{docs_base_url}}/docs/contributing.{{docs_extension}}#pull-request-process)."

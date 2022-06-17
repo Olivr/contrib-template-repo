@@ -1,9 +1,43 @@
-# -------------------------------------------------------------------------------------------------
-# This file configures pre-commit.
+# -----------------------------------------------------------------------------
+# This file configures pre-commit hooks.
 # For more configuration options, see https://pre-commit.com/#plugins
-# -------------------------------------------------------------------------------------------------
+#
+# Try not to use hooks that auto-fix the code as this worsens the developer
+# experience when run on pre-commit. Instead, run 'make fix'.
+# -----------------------------------------------------------------------------
 ---
+default_stages: [commit]
 repos:
+  - repo: local
+    hooks:
+      - id: textlint
+        name: textlint
+        entry: textlint
+        language: node
+        types: [text]
+        # files: \.(te?xt|md)$
+        additional_dependencies:
+          - "textlint@12.1.1"
+          - "textlint-filter-rule-allowlist@4.0.0"
+          - "textlint-filter-rule-comments@1.2.2"
+          - "textlint-rule-terminology@3.0.1"
+
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.8.7
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.1
+    hooks:
+      - id: prettier
+        entry: prettier --check --ignore-unknown --loglevel warn
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.31.1
+    hooks:
+      - id: markdownlint
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
@@ -23,6 +57,14 @@ repos:
     rev: 0.16.0
     hooks:
       - id: check-dependabot
-      - id: check-github-actions
-      - id: check-github-workflows
       - id: check-renovate
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.13
+    hooks:
+      - id: actionlint
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.3
+    hooks:
+      - id: yamllint

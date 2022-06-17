@@ -4,9 +4,10 @@ const docsSidebar = [
     collapsible: true,
     items: [
       { text: "Changelog", link: "/CHANGELOG" },
-      { text: "Contributing", link: "/docs/CONTRIBUTING" },
-      { text: "Security policy", link: "/docs/SECURITY" },
-      { text: "Code of Conduct", link: "/docs/CODE_OF_CONDUCT" },
+      { text: "Contributing", link: "/docs/contributing" },
+      { text: "Developer workflow", link: "/docs/developer-workflow" },
+      { text: "Security policy", link: "/docs/security" },
+      { text: "Code of Conduct", link: "/docs/code_of_conduct" },
       { text: "License", link: "/LICENSE" },
     ],
   },
@@ -30,6 +31,7 @@ const config: import("vitepress").UserConfig = {
         link: "/README",
         activeMatch: "(README|LICENSE|/docs/)",
       },
+      { text: "Contribute", link: "/docs/contributing" },
       { text: "Changelog", link: "/CHANGELOG" },
     ],
 
