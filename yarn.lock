@@ -2008,10 +2008,10 @@ textlint-rule-helper@^2.1.1:
     structured-source "^3.0.2"
     unist-util-visit "^2.0.3"
 
-textlint-rule-terminology@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/textlint-rule-terminology/-/textlint-rule-terminology-3.0.1.tgz#c9da61f592caf424341a0986245b099e226d83b8"
-  integrity sha512-jk2SGGep+XBckhIm9u6CG7NeMZiosJRPfoh7ISlCZizj/JGNk/zheDYGVXwKbFu20SxsguyUIpTF1z/d1Q+NeQ==
+textlint-rule-terminology@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/textlint-rule-terminology/-/textlint-rule-terminology-3.0.3.tgz#92dddc66fad9ee496951433b39a654aa503335da"
+  integrity sha512-c1AzZ7ztXZfLySI8j7CnUGj8leNsfTCs+OPwJQV0ZWpKIZ7FsuRULCof1wLxsOZM+9MpVkmJWGfi6/qR6kRGIg==
   dependencies:
     lodash "^4.17.15"
     strip-json-comments "^3.0.1"
