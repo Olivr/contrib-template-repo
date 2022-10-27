@@ -41,7 +41,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check commits against Conventional Commits format
-        uses: aevea/commitsar@v0.18.0
+        uses: aevea/commitsar@v0.20.1
 
       - name: Add labels according to the Conventional Commits
         uses: bcoe/conventional-release-labels@v1
